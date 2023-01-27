@@ -21,5 +21,4 @@ def recent_files():
 	    nuke.scriptOpen(p.value('Open Recent Files'))
 
 
-nuke.menu('Nuke').addMenu('TG').addCommand('Recent_files v1.0', recent_files)
-
+nuke.menu('Nuke').addMenu('TG').addCommand('Open Recent Files', recent_files)
