@@ -1,0 +1,1 @@
+Copy  menu.py & openCrashScript_v004.py files and paste to .nuke directory
