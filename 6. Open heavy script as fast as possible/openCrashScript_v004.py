@@ -1,4 +1,4 @@
-﻿
+
 import nuke
 import nukescripts
 
@@ -8,7 +8,6 @@ import nukescripts
 #             nuke.allNodes('ReadGeo'),
 #             nuke.allNodes('ReadGeo2'),
 #             nuke.allNodes('Read')]
-
 
 
 def allReads():
@@ -27,32 +26,61 @@ def allReads():
     return allReads
 
 
+
+def delViewers():
+
+    for i in nuke.allNodes("Viewer"):
+        i.setSelected(True)
+
+    nukescripts.node_delete(popupOnError=True)
+    try:
+        nuke.selectedNode().setSelected(False)
+    except:
+        pass
+
+
 def openscript_onlyRead():
     nuke.scriptClose()
     nuke.scriptOpen()
+    delViewers()
+    global disabledNodes
 
+    for i in nuke.allNodes("Viewer"):
+        i.setSelected(True)
+
+    nukescripts.node_delete(popupOnError=True)
+    #nuke.selectedNode().setSelected(False)
 
  
-
+    disabledNodes = []
     for nodes in allReads():
         for i in nodes:
-            print (i.name())
-            i.setSelected(True)
-            i['disable'].setValue(True) 
-            i.setSelected(True)
+            if len(i) != 0 and i['disable'].value()==False:
+                disabledNodes.append(i.name())
+                i['localizationPolicy'].setValue('fromAutoLocalizePath')
+                # print (i.name())
+                i.setSelected(True)
+                i['disable'].setValue(True) 
+                i.setSelected(True)
+
+    nuke.tprint("\n"*2)
+    nuke.tprint("-----------Disabled Nodes----------")
+    nuke.tprint("\n")
+    nuke.tprint(disabledNodes)
 
 
 
 def openscript_disableAll():
     nuke.scriptClose()
     nuke.scriptOpen()
+    delViewers()
 
 
     for i in nuke.allNodes():
         i.knob("selected").setValue(False)
 
     for i in nuke.allNodes():
-        print (i.name())
+        # print (i.name())
         try:
             i.setSelected(True)
             i['disable'].setValue(True) 
@@ -66,19 +94,18 @@ def openscript_disableAll():
 def toggle_all_readNodes():
 
 
-    for nodes in allReads():
-        for i in nodes:
-            print (i.name())
-            i.setSelected(True)
-            
-            try:
-                    
-                if i['disable'].value() == True:
-                    i['disable'].setValue(False)
-                else:
-                    i['disable'].setValue(True)
-            except:
-                pass
+    for i in disabledNodes:
+        # print (i)
+        nuke.toNode(i).setSelected(True)
+        
+        try:
+                
+            if nuke.toNode(i)['disable'].value() == True:
+                nuke.toNode(i)['disable'].setValue(False)
+            else:
+                nuke.toNode(i)['disable'].setValue(True)
+        except:
+            pass
 
 
 def toggle_all_nodes():
