@@ -4,4 +4,4 @@
 
 
 ## deleteAllKnobs.py
-- This will delete all the user created knogs in the root
+- This will delete all the user created knobs in the root
