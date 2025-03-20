@@ -1,1 +1,2 @@
-This will delete all knobs
+This will delete all knobs in the root project settings. 
+
