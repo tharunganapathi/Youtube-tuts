@@ -7,3 +7,4 @@
 - This will delete all the user created knobs in the root
 
 ## menu.py
+- This script will add the above python scripts to nuke dcc
