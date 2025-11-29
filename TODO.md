@@ -14,6 +14,7 @@
 13. cashew bypass subscription and host on own server.
 14. My mattermost configuration
 15. My Grafana
+16. magisk root for android
 
 
 ### Admin restriction
