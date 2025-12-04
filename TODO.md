@@ -1,7 +1,7 @@
 ### Open access
 1. Squash commits using multiple text editors.
 2. IPV6 port forwarding
-3. 
+3. Deadline job success notification.
 4. Own ADSB receiver
 5. Home power and network down automation using openwrt
 6. GCP
