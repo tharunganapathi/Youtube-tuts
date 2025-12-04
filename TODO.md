@@ -15,6 +15,7 @@
 14. My mattermost configuration
 15. My Grafana
 16. magisk root for android
+17. Try youtube as a permanent backup, incase of you rarely restore and reuse.
 
 
 ### Admin restriction
